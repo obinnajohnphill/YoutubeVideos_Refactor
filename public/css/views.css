@@ -1,0 +1,33 @@
+body {
+    font-family: Arial;
+    width: 100%;
+    padding: 10px;
+}
+
+iframe {
+    border: 0px;
+}
+.video-tile {
+    display: inline-block;
+    margin: 10px 10px 20px 10px;
+}
+
+.videoDiv {
+    width: 250px;
+    height: 150px;
+    display: inline-block;
+}
+.videoTitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.videoDesc {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.videoInfo {
+    width: 250px;
+}

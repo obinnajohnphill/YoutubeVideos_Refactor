@@ -1,0 +1,10 @@
+{
+    "require": {
+        "obinna/app2": "master@dev",
+        "php-amqplib/php-amqplib": "^2.8",
+        "vlucas/phpdotenv": "^2.5",
+        "superbalist/php-pubsub-kafka": "^2.0"
+    },
+    "require-dev": {
+    }
+}

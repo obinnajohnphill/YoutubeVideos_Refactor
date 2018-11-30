@@ -1,0 +1,21 @@
+{
+  "name": "obinna/app2",
+  "description": "Obinna Composer App Framework Project",
+  "authors": [
+    {
+      "name": "Obinna Johnphill",
+      "email": "obinna.johnphill@enta.net"
+    }
+  ],
+
+  "minimum-stability": "dev",
+
+  "require": {
+    "php": ">=7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Obinna\\":"src/"
+    }
+  }
+}

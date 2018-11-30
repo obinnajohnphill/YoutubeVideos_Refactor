@@ -8,9 +8,12 @@
 
 namespace Obinna\Router;
 
+
 class Request implements IRequest
 {
     public $requestMethod;
+
+    public $test;
 
     function __construct()
     {
@@ -49,17 +52,13 @@ class Request implements IRequest
 
         if ($this->requestMethod == "POST")
         {
-
             $result = array();
             foreach($_POST as $key => $value)
             {
                 $result[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
 
-            var_dump($result);
-
-
-            return $result;
+           return $result;
         }
 
     }

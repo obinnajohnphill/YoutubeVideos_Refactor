@@ -11,7 +11,7 @@ namespace Obinna\Container;
 use Obinna\Repositories\YoutubeVideosRepository;
 use Obinna\YoutubeVideosModel;
 use Obinna\Services\YoutubeVideosService;
-use Obinna\Controllers\YoutubeVideosController;
+
 
 class YoutubeVideosContainer
 {
@@ -28,9 +28,5 @@ class YoutubeVideosContainer
         return new YoutubeVideosService ($video_id,$title);
     }
 
-    public function getYoutubeVideosController($searchItem, $number)
-    {
-        return new YoutubeVideosController($searchItem, $number);
-    }
 
 }

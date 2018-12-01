@@ -8,7 +8,6 @@
 
 namespace Obinna\Router;
 
-use Obinna\Controllers\YoutubeVideosController;
 
 class Router
 {
@@ -68,12 +67,12 @@ class Router
         $methodDictionary = $this->{strtolower($this->request->requestMethod)};
         $formatedRoute = $this->formatRoute($this->request->requestUri);
 
-     if (empty($methodDictionary[$formatedRoute])){
-         $this->defaultRequestHandler();
-     }
+         if (empty($methodDictionary[$formatedRoute])){
+             $this->defaultRequestHandler();
+         }
 
-     $data =  call_user_func_array($methodDictionary[$formatedRoute], array($this->request));
-     new YoutubeVideosController($data);
+       return call_user_func_array($methodDictionary[$formatedRoute], array($this->request));
+
     }
 
     function __destruct()

@@ -7,7 +7,7 @@
  */
 
 namespace Obinna\Router;
-
+use Obinna\Controllers\YoutubeVideosController;
 
 class Request implements IRequest
 {
@@ -32,29 +32,27 @@ class Request implements IRequest
     {
         $result = strtolower($string);
 
-        preg_match_all('/_[a-z]/', $result, $matches);
+        preg_match_all('/_[a-z?]/', $result, $matches);
 
         foreach($matches[0] as $match)
         {
             $c = str_replace('_', '', strtoupper($match));
             $result = str_replace($match, $c, $result);
         }
-
         return $result;
     }
 
     public function getBody()
     {
-        if($this->requestMethod === "GET")
-        {
-            return null;
-        }
-
         if ($this->requestMethod == "POST")
         {
+
             $result = array();
             foreach($_POST as $key => $value)
             {
+
+                new YoutubeVideosController($_POST);
+
                 $result[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
 

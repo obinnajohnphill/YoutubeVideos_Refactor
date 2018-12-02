@@ -30,3 +30,7 @@ $router->get('/404', function($request) {
 $router->post('/process', function($request) {
     return json_encode($request->getBody());
 });
+
+$router->post('/insert', function($request) {
+    return json_encode($request->getBody());
+});

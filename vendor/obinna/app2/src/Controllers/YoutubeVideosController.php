@@ -12,6 +12,7 @@ use Obinna\Container\YoutubeVideosContainer;
 
 class YoutubeVideosController
 {
+    public $processData;
     function __construct($request)
     {
         $this->processRequest($request);
@@ -20,6 +21,8 @@ class YoutubeVideosController
 
     function processRequest($data)
     {
+        var_dump($data);
+        die();
 
         $call = new YoutubeVideosContainer();
         $youtube_api = $call->getYoutubeVideosRepository();
@@ -30,6 +33,10 @@ class YoutubeVideosController
             $redirect = "../show_videos";
             header( "Location: $redirect" );
         }
+    }
+
+    public function insertData(){
+
     }
 
 

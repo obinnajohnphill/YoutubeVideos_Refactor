@@ -39,8 +39,8 @@ class YoutubeVideosRepository
       return;
     }
 
-    public function checkDuplicate($video_id,$title){
-        return $this->connect->checkDuplicate($video_id, $title);
+    public function checkDuplicate($video_id){
+        return $this->connect->checkDuplicate($video_id);
     }
 
     public function delete($video_id){

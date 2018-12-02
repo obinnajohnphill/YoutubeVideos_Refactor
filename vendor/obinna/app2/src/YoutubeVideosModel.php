@@ -74,7 +74,6 @@ class YoutubeVideosModel
 
     public function saveAll($video_id,$title)
     {
-        $payload = array();
         try {
             $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$title')");
             $statement->execute();
@@ -86,23 +85,21 @@ class YoutubeVideosModel
             echo "Insert failed: " . $e->getMessage();
         }
         session_start();
-        $payload ['msg'] = "Your video has been saved";
-        $redirect = "../saved_videos?".http_build_query($payload);;
+        $_SESSION['msg'] = "Your video has been saved";
+        $redirect = "../saved_videos";
         header( "Location: $redirect" );
     }
 
 
-    public function checkDuplicate($video_id,$title){
+    public function checkDuplicate($video_id){
         try {
             $statement = $this->conn->prepare("SELECT * FROM  videos WHERE video_id = '$video_id'");
             $statement->execute();
             $number_of_rows = $statement->fetchColumn();
             if ($number_of_rows > 0) {
                 session_start();
-                $data[] = $title;
-                $payload ['msg'] = "Duplicate video exists in database";
-                $payload ['title'] = $data;
-                $redirect = "../?" . http_build_query($payload);;
+                $_SESSION['msg'] = "Duplicate video exists in database";
+                $redirect = "../";
                 header("Location: $redirect");
             } else {
                 $this->duplicate = true;
@@ -128,8 +125,8 @@ class YoutubeVideosModel
             echo "Delete failed: " . $e->getMessage();
         }
         session_start();
-        $payload ['delete-msg'] = "Videos deleted from database";
-        $redirect = "../saved_videos?" . http_build_query($payload);;
+        $_SESSION['delete-msg'] = "Videos deleted from database";
+        $redirect = "../saved_videos";
         header("Location: $redirect");
     }
 

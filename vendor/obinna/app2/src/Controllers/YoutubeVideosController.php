@@ -12,7 +12,7 @@ use Obinna\Container\YoutubeVideosContainer;
 
 class YoutubeVideosController
 {
-    public $processData;
+
     function __construct($request)
     {
         if (isset($request['searchterm'])){
@@ -26,8 +26,8 @@ class YoutubeVideosController
 
     function processRequest($data)
     {
-        $call = new YoutubeVideosContainer();
-        $youtube_api = $call->getYoutubeVideosRepository();
+        $container = new YoutubeVideosContainer();
+        $youtube_api = $container->getYoutubeVideosRepository();
         $value = $youtube_api->getYoutubeData($data['searchterm'], $data['number']);
         session_start();
         $_SESSION['videos'] = $value;
@@ -38,12 +38,12 @@ class YoutubeVideosController
     }
 
     public function processData($data){
-
-            var_dump($data);
-            die();
-
+        for($i=0; $i < count($data['videoId']); $i++){
+            $container = new YoutubeVideosContainer();
+            $insert = $container->getYoutubeVideosRepository();
+            $insert->saveAll($data['videoId'][$i],$data['title'][$i]);
+        }
 
     }
-
 
 }

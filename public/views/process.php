@@ -8,7 +8,7 @@
 
 
 include dirname(__FILE__).'/../../vendor/autoload.php';
-
+die();
 
 use Obinna\Container\YoutubeVideosContainer;
 

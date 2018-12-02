@@ -29,7 +29,7 @@ include dirname(__FILE__).'/../../vendor/autoload.php';
 
 use Obinna\Container\YoutubeVideosContainer;
 
-if (!empty ($_GET['msg'])){
+if (!empty ($_SESSION['msg'])){
     $message = $_GET['msg'];
     echo '<div style="color:#4a8b15">' .$message.'</div>';
 }

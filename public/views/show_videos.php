@@ -42,14 +42,16 @@
 
 <form action="/process" method="post">
 
-
-    <ul id="v-for-object" class="demo">
+    <div class="video-tile">
+    <div id="video-object"  class="videoDiv">
         <p v-for="value in object">
-            {{value.id.videoId}} <span >{{value.snippet.title}}</span>
+            <iframe id="iframe" style="width:100%;height:100%"
+                    :src="'https://www.youtube.com/embed/'+value.id.videoId+'?autoplay=0&origin=http://example.com'"
+                    frameborder="0"></iframe>
+             <b>{{value.snippet.title}}</b><br>
         </p>
-    </ul>
-
-
+    </div>
+    </div>
 
 
 <?php
@@ -87,7 +89,7 @@ if(isset($_SESSION['videos']) && isset($_GET['number'])) {
 
 <script>
     new Vue({
-        el: '#v-for-object',
+        el: '#video-object',
         data: {
             object:<?php echo json_encode($_SESSION['videos']['items'],JSON_FORCE_OBJECT); ?>
         }

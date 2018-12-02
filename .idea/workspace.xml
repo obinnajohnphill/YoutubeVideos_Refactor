@@ -74,9 +74,17 @@
       <file leaf-file-name="show_videos.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/show_videos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="93" column="6" lean-forward="false" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="237">
+              <caret line="53" column="10" lean-forward="false" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+              <folding>
+                <marker date="1543742238634" expanded="true" signature="2340:3076" ph="..." />
+                <marker date="1543742238634" expanded="true" signature="2375:2628" ph="..." />
+                <marker date="1543742238634" expanded="true" signature="2497:2609" ph="..." />
+                <marker date="1543742238634" expanded="true" signature="2665:2857" ph="..." />
+                <marker date="1543742238634" expanded="true" signature="2894:3061" ph="..." />
+                <marker date="1543742238634" expanded="true" signature="3197:3224" ph="..." />
+                <marker date="1543742238634" expanded="true" signature="3211:3224" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -307,12 +315,12 @@
       <workItem from="1543236211337" duration="12806000" />
       <workItem from="1543405021490" duration="18615000" />
       <workItem from="1543618017783" duration="27495000" />
-      <workItem from="1543710101965" duration="8731000" />
+      <workItem from="1543710101965" duration="13307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205985000" />
+    <option name="totallyTimeSpent" value="210561000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="17" width="1368" height="780" extended-state="6" />
@@ -612,9 +620,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/show_videos.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="93" column="6" lean-forward="false" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="237">
+          <caret line="53" column="10" lean-forward="false" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+          <folding>
+            <marker date="1543742238634" expanded="true" signature="2340:3076" ph="..." />
+            <marker date="1543742238634" expanded="true" signature="2375:2628" ph="..." />
+            <marker date="1543742238634" expanded="true" signature="2497:2609" ph="..." />
+            <marker date="1543742238634" expanded="true" signature="2665:2857" ph="..." />
+            <marker date="1543742238634" expanded="true" signature="2894:3061" ph="..." />
+            <marker date="1543742238634" expanded="true" signature="3197:3224" ph="..." />
+            <marker date="1543742238634" expanded="true" signature="3211:3224" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

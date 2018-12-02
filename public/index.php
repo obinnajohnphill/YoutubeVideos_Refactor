@@ -8,6 +8,8 @@ use Obinna\Router\Request;
 
 $router = new Router(new Request);
 
+$request = "";
+
 $router->get('/', function() {
     require 'views/home.php';
 });

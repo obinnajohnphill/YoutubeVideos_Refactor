@@ -1,27 +1,30 @@
 <?php
 
-## Get project host address
-$host_address = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+include dirname(__FILE__).'/../vendor/autoload.php';
 
-## Split host address into components
-$pages = (parse_url($host_address, PHP_URL_PATH));
+use Obinna\Container\YoutubeVideosContainer;
 
-## Route it up!
-switch ($pages) {
-    case '/':
-        require 'views/home.php';
-        break;
-    case '/show_videos':
-        require 'views/show_videos.php';
-        break;
-    case '/saved_videos':
-        require 'views/saved_videos.php';
-        break;
-    case '/process':
-        require 'views/process.php';
-        break;
-    default:
-        header('HTTP/1.0 404 Not Found');
-        require 'views/404.php';
-        break;
-}
+
+$router = new YoutubeVideosContainer();
+$router->getYoutubeRouter();
+
+$router->get('/', function() {
+    require 'views/home.php';
+});
+
+$router->get('/show_videos', function($request) {
+    require 'views/show_videos.php';
+});
+
+$router->get('/saved_videos', function($request) {
+    require 'views/saved_videos.php';
+});
+
+
+$router->get('/404', function($request) {
+  require 'views/404.php';
+});
+
+$router->post('/process', function($request) {
+    return json_encode($request->getBody());
+});

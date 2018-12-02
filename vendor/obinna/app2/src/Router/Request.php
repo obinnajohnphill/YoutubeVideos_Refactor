@@ -44,13 +44,17 @@ class Request implements IRequest
 
     public function getBody()
     {
+        if ($this->requestMethod == "GET")
+        {
+            return $_GET;
+
+        }
+
         if ($this->requestMethod == "POST")
         {
-
             $result = array();
             foreach($_POST as $key => $value)
             {
-
                 new YoutubeVideosController($_POST);
 
                 $result[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);

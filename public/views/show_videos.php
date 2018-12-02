@@ -13,10 +13,10 @@
 
     <?php
     session_start();
-    var_dump($_SESSION['videos']['items'][0]['snippet']['title']);
+    //var_dump($_SESSION['videos']['items'][0]['snippet']['title']);
 
-    $data = array("video"=>$_SESSION['videos']['items'][0]['id']['videoId'],
-                  "title"=> $_SESSION['videos']['items'][0]['snippet']['title']);
+   // $data = array("video"=>$_SESSION['videos']['items'][0]['id']['videoId'],
+                 // "title"=> $_SESSION['videos']['items'][0]['snippet']['title']);
 
     ?>
 
@@ -44,16 +44,12 @@
 
 
     <ul id="v-for-object" class="demo">
-        <li v-for="value in object">
-            {{ value }}
-        </li>
+        <p v-for="value in object">
+            {{value.id.videoId}} <span >{{value.snippet.title}}</span>
+        </p>
     </ul>
 
 
-        <?
-var_dump(json_encode($data));
-die();
-?>
 
 
 <?php
@@ -89,17 +85,11 @@ if(isset($_SESSION['videos']) && isset($_GET['number'])) {
 <input type="submit" class="btn btn-primary btn-lg" value="Submit">
 </form>
 
-
-
 <script>
     new Vue({
         el: '#v-for-object',
         data: {
-            object: {
-                firstName:'Matt',
-                lastName: 'Doe',
-                age: 30
-            }
+            object:<?php echo json_encode($_SESSION['videos']['items'],JSON_FORCE_OBJECT); ?>
         }
     })
 </script>

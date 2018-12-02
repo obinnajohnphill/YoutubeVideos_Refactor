@@ -31,6 +31,3 @@ $router->post('/process', function($request) {
     return json_encode($request->getBody());
 });
 
-$router->post('/insert', function($request) {
-    return json_encode($request->getBody());
-});

@@ -15,15 +15,17 @@ class YoutubeVideosController
     public $processData;
     function __construct($request)
     {
-        $this->processRequest($request);
+        if (isset($request['searchterm'])){
+            $this->processRequest($request);
+        }
+        if (isset($request['videoId'])){
+            $this->processData($request);
+        }
     }
 
 
     function processRequest($data)
     {
-        var_dump($data);
-        die();
-
         $call = new YoutubeVideosContainer();
         $youtube_api = $call->getYoutubeVideosRepository();
         $value = $youtube_api->getYoutubeData($data['searchterm'], $data['number']);
@@ -35,7 +37,11 @@ class YoutubeVideosController
         }
     }
 
-    public function insertData(){
+    public function processData($data){
+
+            var_dump($data);
+            die();
+
 
     }
 

@@ -40,7 +40,7 @@
 <a rel="group_1" href="#select_none">Select None</a>&ensp;
 <a rel="group_1" href="#invert_selection">Invert Selection</a>
 
-<form action="/insert" method="post">
+<form action="/process" method="post">
 
     <div id="video-object"  class="videoDiv">
         <div v-for="value in object">
@@ -51,7 +51,7 @@
 
 
              <fieldset id="group_1">
-             <input type="checkbox" id="checkbox" name="videoId[]">
+             <input type="checkbox" id="checkbox" name="checkbox">
              <label for="checkbox"></label><br>
              <input  type="hidden" name="videoId[]"  v-model="value.id.videoId">
              <input type="hidden" name="title[]"  v-model="value.snippet.title">

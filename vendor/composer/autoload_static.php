@@ -18,11 +18,16 @@ class ComposerStaticInit3e2424229ef209f5307966a9ede824a6
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'PhpAmqpLib\\' => 11,
         ),
         'O' => 
         array (
             'Obinna\\' => 7,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'D' => 
         array (
@@ -44,6 +49,10 @@ class ComposerStaticInit3e2424229ef209f5307966a9ede824a6
         array (
             0 => __DIR__ . '/..' . '/superbalist/php-pubsub/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'PhpAmqpLib\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib',
@@ -51,6 +60,10 @@ class ComposerStaticInit3e2424229ef209f5307966a9ede824a6
         'Obinna\\' => 
         array (
             0 => __DIR__ . '/..' . '/obinna/app2/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Dotenv\\' => 
         array (

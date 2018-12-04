@@ -79,6 +79,7 @@ class YoutubeVideosModel
             $statement->execute();
             $statement = null;
             $this->memcached->flush();
+            $this->savedMessage();
         }
         catch(PDOException $e)
         {
@@ -128,6 +129,10 @@ class YoutubeVideosModel
         $_SESSION['delete-msg'] = "Videos deleted from database";
         $redirect = "../saved_videos";
         header("Location: $redirect");
+    }
+
+    public function savedMessage(){
+        return "Video has been saved into database";
     }
 
 

@@ -9,7 +9,9 @@ return array(
     'Tests\\' => array($vendorDir . '/superbalist/php-pubsub/tests', $vendorDir . '/superbalist/php-pubsub-kafka/tests'),
     'Superbalist\\PubSub\\Kafka\\' => array($vendorDir . '/superbalist/php-pubsub-kafka/src'),
     'Superbalist\\PubSub\\' => array($vendorDir . '/superbalist/php-pubsub/src'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'PhpAmqpLib\\' => array($vendorDir . '/php-amqplib/php-amqplib/PhpAmqpLib'),
     'Obinna\\' => array($vendorDir . '/obinna/app2/src'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
 );

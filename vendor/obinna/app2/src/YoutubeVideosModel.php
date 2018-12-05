@@ -79,7 +79,9 @@ class YoutubeVideosModel
             $statement->execute();
             $statement = null;
             $this->memcached->flush();
-            $this->savedMessage();
+            include_once $_SERVER["DOCUMENT_ROOT"]."/Send.php";
+            $savedMessage = new \Send();
+            $savedMessage->sendMessage();
         }
         catch(PDOException $e)
         {

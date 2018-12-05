@@ -6,18 +6,13 @@ const KAFKA_TOPIC = 'youtube';
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-//echo getcwd()."echo 1<br>";
-////$test = __DIR__ .'/autoload.php'.'echo 2';
-//echo $test;
-//die();
 
 require_once __DIR__ .'/vendor/autoload.php';
 
-//use Obinna\Container\YoutubeVideosContainer;
-//$container = new YoutubeVideosContainer();
-//$function = $container->getYoutubeVideosRepository();
-//$content= $function->savedMessage();
+include_once "public/Send.php";
 
+$test = new Send();
+$payload = $test->sendMessage();
 
 $logger = new Logger('producer');
 $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/producer.log'));
@@ -31,7 +26,7 @@ $topic = $kafka->newTopic(KAFKA_TOPIC);
 
 
 for ($i = 0; $i < 10; $i++) {
-    $message = sprintf('Video Saved Successfully%d', $i);
+    $message = sprintf(''.$payload.'%d', $i);
     $logger->debug(sprintf('Producing: %s', $message));
     $topic->produce(KAFKA_PARTITION, 0, $message);
     $kafka->poll(0);

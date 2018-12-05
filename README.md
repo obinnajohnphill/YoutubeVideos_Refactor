@@ -45,8 +45,22 @@ created_date TIMESTAMP
 
 **View Data Stored in Cache**
 
-2. ssh into your server 
+1. ssh into your server 
 
-1. Run: telnet localhost 11211 
+2. Run: telnet localhost 11211 
 
 3. Run: get select (to view data stored in cache with "select key")
+
+
+**Boot up Kafka Server**
+
+1. Fromm the app roor run: docker-compose up -d
+
+2. Run: docker-compose run --rm --entrypoint php app run_consumer.php (on terminal)
+
+3. Run: docker-compose run --rm --entrypoint php app run_producer.php (on separate terminal)
+
+3. Run: tail data/logs/*.log (another terminal) ; You should see the kafka producer send out message when video is save,
+and you should see the kafka message consumer ready to consume messages.
+
+

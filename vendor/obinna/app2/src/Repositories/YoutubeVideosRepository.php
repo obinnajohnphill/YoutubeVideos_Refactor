@@ -47,9 +47,6 @@ class YoutubeVideosRepository
         $this->connect->delete($video_id);
     }
 
-    public function savedMessage(){
-        return $this->connect->savedMessage();
-    }
 
     public function getYoutubeData($searchterm,$number){
 

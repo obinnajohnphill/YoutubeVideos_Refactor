@@ -4,8 +4,9 @@
         "php-amqplib/php-amqplib": "^2.8",
         "vlucas/phpdotenv": "^2.5",
         "superbalist/php-pubsub-kafka": "^2.0",
-        "monolog/monolog": "^1.23",
-        "kwn/php-rdkafka-stubs": "^1.2"
+        "monolog/monolog": "^1.24",
+        "kwn/php-rdkafka-stubs": "^1.2",
+        "psr/log": "^1.1"
     },
     "require-dev": {
     }

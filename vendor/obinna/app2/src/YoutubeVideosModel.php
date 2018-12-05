@@ -12,6 +12,7 @@ use Dotenv;
 use PDO;
 use PDOException;
 use Memcached;
+use Obinna\RabbitMQ\SendMessage;
 
 class YoutubeVideosModel
 {
@@ -72,56 +73,71 @@ class YoutubeVideosModel
     }
 
 
-    public function saveAll($video_id,$title)
+    public function saveAll($data)
     {
         try {
-            $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$title')");
-            $statement->execute();
-            $statement = null;
-            $this->memcached->flush();
-            include_once $_SERVER["DOCUMENT_ROOT"]."/Send.php";
-            $savedMessage = new \Send();
-            $savedMessage->sendMessage();
+            $array = array("videoId"=>$data['videoId'],"title"=>$data['title']);
+            for ($i= 0; $i < count($data['checkbox']); $i++) {
+
+                $video_id = $array['videoId'][$i];
+                $title = $array['title'][$i];
+
+                $checkDuplicate = $this->checkDuplicate($array['videoId'][$i]);
+                if ($checkDuplicate > 0) {
+                    session_start();
+                    $_SESSION['duplicate'] = "Duplicate video exists in database: ".$title;
+                    $redirect = "../";
+                    header("Location: $redirect");
+                }
+
+                $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$title')");
+                $statement->execute();
+                $statement = null;
+
+                $this->memcached->flush();
+                new SendMessage();
+                include_once $_SERVER["DOCUMENT_ROOT"]."/Send.php";
+                $savedMessage = new \Send();
+                $savedMessage->sendMessage();
+                session_start();
+                $_SESSION['msg'] = "Your video has been saved";
+                $redirect = "../saved_videos";
+                header( "Location: $redirect" );
+            }
+             die();
         }
         catch(PDOException $e)
         {
             echo "Insert failed: " . $e->getMessage();
         }
-        session_start();
-        $_SESSION['msg'] = "Your video has been saved";
-        $redirect = "../saved_videos";
-        header( "Location: $redirect" );
+
     }
 
 
     public function checkDuplicate($video_id){
-        try {
+     try {
             $statement = $this->conn->prepare("SELECT * FROM  videos WHERE video_id = '$video_id'");
             $statement->execute();
-            $number_of_rows = $statement->fetchColumn();
-            if ($number_of_rows > 0) {
-                session_start();
-                $_SESSION['msg'] = "Duplicate video exists in database";
-                $redirect = "../";
-                header("Location: $redirect");
-            } else {
-                $this->duplicate = true;
-            }
-            return $this->duplicate;
+            $number_of_rows = $statement->rowCount();
+            return  $number_of_rows;
         }
         catch(PDOException $e)
         {
             echo "Check num-rows failed: " . $e->getMessage();
         }
+
     }
 
 
     public function delete($video_id){
         try{
-            $statement = $this->conn->prepare("DELETE FROM videos WHERE video_id = '$video_id'");
-            $statement->execute();
-            $statement = null;
-            $this->memcached->flush();
+            for ($i = 0; $i < count($video_id); $i++){
+                $statement = $this->conn->prepare("DELETE FROM videos WHERE video_id = '$video_id[$i]'");
+                $statement->execute();
+                $statement = null;
+                $this->memcached->flush();
+            }
+
         }
         catch(PDOException $e)
         {

@@ -44,7 +44,7 @@ session_start();
 
 
              <fieldset id="group_1">
-             <input type="checkbox" id="checkbox" name="checkbox">
+             <input type="checkbox" id="checkbox" name="checkbox[]">
              <label for="checkbox"></label><br>
              <input  type="hidden" name="videoId[]"  v-model="value.id.videoId">
              <input type="hidden" name="title[]"  v-model="value.snippet.title">

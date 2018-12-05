@@ -11,8 +11,8 @@ require_once __DIR__ .'/vendor/autoload.php';
 
 include_once "public/Send.php";
 
-$test = new Send();
-$payload = $test->sendMessage();
+$call = new Send();
+$payload = $call->sendMessage();
 
 $logger = new Logger('producer');
 $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/producer.log'));

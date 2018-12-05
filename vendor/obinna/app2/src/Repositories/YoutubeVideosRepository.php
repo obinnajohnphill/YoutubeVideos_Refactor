@@ -34,17 +34,12 @@ class YoutubeVideosRepository
        return  $this->connect->all();
     }
 
-    public function saveAll($video_id,$title){
-      $this->connect->saveAll($video_id, $title);
-      return;
+    public function saveAll($data){
+      $this->connect->saveAll($data);
     }
 
-    public function checkDuplicate($video_id){
-        return $this->connect->checkDuplicate($video_id);
-    }
-
-    public function delete($video_id){
-        $this->connect->delete($video_id);
+    public function delete($data){
+        $this->connect->delete($data);
     }
 
 

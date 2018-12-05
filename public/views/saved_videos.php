@@ -28,14 +28,16 @@
 include dirname(__FILE__).'/../../vendor/autoload.php';
 
 use Obinna\Container\YoutubeVideosContainer;
-
+session_start();
 if (!empty ($_SESSION['msg'])){
-    $message = $_GET['msg'];
+    $message = $_SESSION['msg'];
     echo '<div style="color:#4a8b15">' .$message.'</div>';
+    session_unset();
 }
-if (!empty ($_GET['delete-msg'])){
-    $message = $_GET['delete-msg'];
+if (!empty ($_SESSION['delete-msg'])){
+    $message = $_SESSION['delete-msg'];
     echo '<div style="color:red">' .$message.'</div>';
+    session_unset();
 }
 
 ## Call the a function within the Repository via the Container to get all videos

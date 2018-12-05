@@ -31,13 +31,9 @@ input {
 </nav>
 
 <?php
-
-if (!empty($_GET['msg'])){
-    echo "<div class='msg'>".$_GET['msg'].": &nbsp;&nbsp;";
-    for ($i = 0; $i < count($_GET['title']); $i++) {
-        echo"<strong>". $_GET['title'][$i]."</strong><br>";
-        echo"</div>";
-    }
+session_start();
+if (!empty($_SESSION['duplicate'])){
+    echo "<div class='msg'>".$_SESSION['duplicate'].": &nbsp;&nbsp;";
 }
 ?>
 

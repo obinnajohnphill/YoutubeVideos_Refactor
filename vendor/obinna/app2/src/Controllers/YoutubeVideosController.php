@@ -15,11 +15,17 @@ class YoutubeVideosController
 
     function __construct($request)
     {
+
         if (isset($request['searchterm'])){
             $this->processRequest($request);
         }
-        if (isset($request['videoId'])){
-            $this->processData($request);
+        if (!empty($request['checkbox'])){
+            $this->saveData($request);
+        }
+        if (isset($request['delete'])){
+            $this->deleteData($request['videoId']);
+           // var_dump($request);
+           // die();
         }
     }
 
@@ -37,13 +43,16 @@ class YoutubeVideosController
         }
     }
 
-    public function processData($data){
-        for($i=0; $i < count($data['videoId']); $i++){
+    public function saveData($data){
             $container = new YoutubeVideosContainer();
             $insert = $container->getYoutubeVideosRepository();
-            $insert->saveAll($data['videoId'][$i],$data['title'][$i]);
-        }
+            $insert->saveAll($data);
+    }
 
+    public function deleteData($videoId){
+        $container = new YoutubeVideosContainer();
+        $insert = $container->getYoutubeVideosRepository();
+        $insert->delete($videoId);
     }
 
 }

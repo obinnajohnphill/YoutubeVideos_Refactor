@@ -9,7 +9,7 @@ use Monolog\Logger;
 
 require_once __DIR__ .'/vendor/autoload.php';
 
-include_once "public/Send.php";
+include_once "Send.php";
 
 $call = new Send();
 $payload = $call->sendMessage();

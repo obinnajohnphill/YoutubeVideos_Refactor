@@ -8,7 +8,7 @@
 
 namespace Obinna\Controllers;
 
-use Obinna\Container\YoutubeVideosContainer;
+use Obinna\Services\YoutubeVideosContainer;
 
 class YoutubeVideosController
 {
@@ -24,8 +24,6 @@ class YoutubeVideosController
         }
         if (isset($request['delete'])){
             $this->deleteData($request['videoId']);
-           // var_dump($request);
-           // die();
         }
     }
 

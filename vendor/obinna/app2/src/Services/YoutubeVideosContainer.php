@@ -6,11 +6,10 @@
  * Time: 11:37
  */
 
-namespace Obinna\Container;
+namespace Obinna\Services;
 
 use Obinna\Repositories\YoutubeVideosRepository;
 use Obinna\YoutubeVideosModel;
-use Obinna\Services\YoutubeVideosService;
 use Obinna\Router\Router;
 use Obinna\Router\Request;
 
@@ -30,11 +29,5 @@ class YoutubeVideosContainer
         $this->container = new Request();
         return new Router($this->container);
     }
-
-    public function getYoutubeVideosService ($video_id,$title)
-    {
-        return new YoutubeVideosService ($video_id,$title);
-    }
-
 
 }

@@ -27,7 +27,7 @@
 
 include dirname(__FILE__).'/../../vendor/autoload.php';
 
-use Obinna\Container\YoutubeVideosContainer;
+use Obinna\Services\YoutubeVideosContainer;
 session_start();
 if (!empty ($_SESSION['msg'])){
     $message = $_SESSION['msg'];
@@ -40,7 +40,7 @@ if (!empty ($_SESSION['delete-msg'])){
     session_unset();
 }
 
-## Call the a function within the Repository via the Container to get all videos
+## Call the a function within the Repository via the Services to get all videos
 $container = new YoutubeVideosContainer();
 $function = $container->getYoutubeVideosRepository();
 $showall = $function->all();

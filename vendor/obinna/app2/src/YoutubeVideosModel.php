@@ -149,9 +149,5 @@ class YoutubeVideosModel
         header("Location: $redirect");
     }
 
-    public function savedMessage(){
-        return "Video has been saved into database";
-    }
-
 
 }

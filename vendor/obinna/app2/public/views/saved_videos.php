@@ -38,7 +38,7 @@ if (!empty ($_GET['delete-msg'])){
     echo '<div style="color:red">' .$message.'</div>';
 }
 
-## Call the a function within the Repository via the Container to get all videos
+## Call the a function within the Repository via the Services to get all videos
 $container = new YoutubeVideosContainer();
 $function = $container->getYoutubeVideosRepository();
 $showall = $function->all();

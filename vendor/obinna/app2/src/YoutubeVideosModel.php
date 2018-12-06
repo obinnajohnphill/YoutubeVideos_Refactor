@@ -88,6 +88,7 @@ class YoutubeVideosModel
                     $_SESSION['duplicate'] = "Duplicate video exists in database: ".$title;
                     $redirect = "../";
                     header("Location: $redirect");
+                    exit();
                 }
 
                 $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$title')");

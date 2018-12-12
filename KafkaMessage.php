@@ -21,9 +21,9 @@ class KafkaMessage{
     public function producer($data)
     {
 
-         var_dump(php_ini_loaded_file());
-         var_dump(get_loaded_extensions());
-         die();
+         //var_dump(php_ini_loaded_file());
+         //var_dump(get_loaded_extensions());
+         //die();
 
         $logger = new Logger('producer');
         $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/producer.log'));

@@ -98,8 +98,7 @@ class YoutubeVideosModel
                 $this->memcached->flush();
                 new SendMessage();
                 include_once $_SERVER["DOCUMENT_ROOT"]."/Send.php";
-                $savedMessage = new \Send();
-                $savedMessage->sendMessage();
+                new \Send($data); ## Send data to Kafka
                 session_start();
                 $_SESSION['msg'] = "Your video has been saved";
                 $redirect = "../saved_videos";

@@ -6,8 +6,14 @@
  * Time: 13:28
  */
 
+
+require_once __DIR__ . '/../KafkaMessage.php';
+
 class Send{
-    public function sendMessage(){
-        return "Your youtube videos has been saved into the database";
+
+    public function __construct($data)
+    {
+        new KafkaMessage($data);
     }
+
 }

@@ -99,7 +99,7 @@ class YoutubeVideosModel
                 $this->memcached->flush();
                 new SendMessage();
                 include_once $_SERVER["DOCUMENT_ROOT"]."/Send.php";
-                new \Send($data); ## Send data to Kafka
+                //new \Send($data); ## Send data to Kafka
                 session_start();
                 $_SESSION['msg'] = "Your video has been saved";
                 $redirect = "../saved_videos";
@@ -132,11 +132,13 @@ class YoutubeVideosModel
 
     public function delete($video_id){
         try{
-            for ($i = 0; $i < count($video_id); $i++){
-                $statement = $this->conn->prepare("DELETE FROM videos WHERE video_id = '$video_id[$i]'");
+            for ($i = 0; $i < count($video_id['videoId']); $i++){
+                $video = $video_id['videoId'][$i];
+                $statement = $this->conn->prepare("DELETE FROM videos WHERE video_id = '$video'");
                 $statement->execute();
                 $statement = null;
                 $this->memcached->flush();
+               // die("deleted?");
             }
 
         }

@@ -16,15 +16,17 @@ class YoutubeVideosController
 
     function __construct($request)
     {
+
+        if (isset($request['delete'])){
+                $this->deleteData($request);
+        }
         if (isset($request['searchterm'])){
             $this->processRequest($request);
         }
         if (!empty($request['checkbox'])){
             $this->saveData($request);
         }
-        if (isset($request['delete'])){
-            $this->deleteData($request['videoId']);
-        }
+
     }
 
 
@@ -47,10 +49,13 @@ class YoutubeVideosController
             $insert->saveAll($data);
     }
 
-    public function deleteData($videoId){
+    public function deleteData($request){
+        for($i=0; $i < count($request['checkbox']); $i++){
+            $this->payload = array ('videoId'=>$request['videoId']);
+        }
         $container = new YoutubeVideosContainer();
         $delete = $container->getYoutubeVideosRepository();
-        $delete->delete($videoId);
+        $delete->delete($this->payload);
     }
 
     public function getAllVideos(){

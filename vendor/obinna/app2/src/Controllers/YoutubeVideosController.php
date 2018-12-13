@@ -16,9 +16,6 @@ class YoutubeVideosController
 
     function __construct($request)
     {
-       // var_dump($request);
-        //die();
-
         if (isset($request['searchterm'])){
             $this->processRequest($request);
         }
@@ -60,12 +57,9 @@ class YoutubeVideosController
         $container = new YoutubeVideosContainer();
         $select = $container->getYoutubeVideosRepository();
         $data = $select->all();
-        //echo count($data['videoId']);
         for($i=0; $i < count($data['videoId']); $i++){
             $this->payload[] = array ('videoId'=>$data['videoId'][$i],'title'=>$data['title'][$i]);
         }
-        //var_dump($this->payload);
-        //die();
         session_start();
         $_SESSION['data']=$this->payload;
         $redirect = "../saved_videos";

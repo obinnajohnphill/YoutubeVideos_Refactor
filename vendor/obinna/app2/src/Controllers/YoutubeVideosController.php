@@ -12,9 +12,12 @@ use Obinna\Services\YoutubeVideosContainer;
 
 class YoutubeVideosController
 {
+    public $payload;
 
     function __construct($request)
     {
+       // var_dump($request);
+        //die();
 
         if (isset($request['searchterm'])){
             $this->processRequest($request);
@@ -49,8 +52,24 @@ class YoutubeVideosController
 
     public function deleteData($videoId){
         $container = new YoutubeVideosContainer();
-        $insert = $container->getYoutubeVideosRepository();
-        $insert->delete($videoId);
+        $delete = $container->getYoutubeVideosRepository();
+        $delete->delete($videoId);
+    }
+
+    public function getAllVideos(){
+        $container = new YoutubeVideosContainer();
+        $select = $container->getYoutubeVideosRepository();
+        $data = $select->all();
+        //echo count($data['videoId']);
+        for($i=0; $i < count($data['videoId']); $i++){
+            $this->payload = array ('videoId'=>$data['videoId'][$i],'title'=>$data['title'][$i]);
+        }
+        //var_dump($payload);
+        //die();
+        session_start();
+        $_SESSION['data']=$this->payload;
+        $redirect = "../saved_videos";
+        header( "Location: $redirect" );
     }
 
 }

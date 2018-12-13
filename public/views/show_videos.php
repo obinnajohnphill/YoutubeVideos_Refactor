@@ -50,7 +50,7 @@ session_start();
              <input type="hidden" name="title[]"  v-model="value.snippet.title">
             </fieldset>
 
-        </p>
+
     </div>
 
 <input type="submit" class="btn btn-primary btn-lg" value="Submit">
@@ -60,7 +60,7 @@ session_start();
     new Vue({
         el: '#video-object',
         data: {
-            object:<?php echo json_encode($_SESSION['videos']['items'],JSON_FORCE_OBJECT); ?>
+            object:<?php echo json_encode($_SESSION['videos']['items'],JSON_FORCE_OBJECT);?>
         }
     })
 

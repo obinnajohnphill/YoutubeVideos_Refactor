@@ -43,6 +43,7 @@ class YoutubeVideosModel
 
     public function all(){
         try{
+            $this->memcached->flush();
             ## Get result from memcached if data exists in cache
             $cached = $this->memcached->get("select");
             if ($this->memcached->getResultCode() !== Memcached::RES_NOTFOUND) {

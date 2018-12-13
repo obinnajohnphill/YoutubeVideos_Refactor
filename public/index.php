@@ -25,7 +25,6 @@ $router->get('/saved_videos', function() {
 
 
 $router->get('/data', function() {
-   // require 'views/saved_videos.php';
     $controller = new \Obinna\Controllers\YoutubeVideosController(null);
     $controller->getAllVideos();
 });

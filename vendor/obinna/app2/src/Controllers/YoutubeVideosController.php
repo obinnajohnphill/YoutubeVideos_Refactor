@@ -62,9 +62,9 @@ class YoutubeVideosController
         $data = $select->all();
         //echo count($data['videoId']);
         for($i=0; $i < count($data['videoId']); $i++){
-            $this->payload = array ('videoId'=>$data['videoId'][$i],'title'=>$data['title'][$i]);
+            $this->payload[] = array ('videoId'=>$data['videoId'][$i],'title'=>$data['title'][$i]);
         }
-        //var_dump($payload);
+        //var_dump($this->payload);
         //die();
         session_start();
         $_SESSION['data']=$this->payload;

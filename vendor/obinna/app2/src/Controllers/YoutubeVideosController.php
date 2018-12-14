@@ -65,6 +65,12 @@ class YoutubeVideosController
         for($i=0; $i < count($data['videoId']); $i++){
             $this->payload[] = array ('videoId'=>$data['videoId'][$i],'title'=>$data['title'][$i]);
         }
+    /*
+        $item = json_encode($this->payload,JSON_FORCE_OBJECT);
+        $redirect = "/saved_videos?data=".$item;
+        header( "Location: $redirect" );
+        die();
+    */
         session_start();
         $_SESSION['data']=$this->payload;
         $redirect = "../saved_videos";

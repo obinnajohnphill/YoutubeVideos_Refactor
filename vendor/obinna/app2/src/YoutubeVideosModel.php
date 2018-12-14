@@ -82,7 +82,7 @@ class YoutubeVideosModel
 
                 $video_id = $array['videoId'][$i];
                 $title = $array['title'][$i];
-
+/*
                 $checkDuplicate = $this->checkDuplicate($array['videoId'][$i]);
                 if ($checkDuplicate > 0) {
                     session_start();
@@ -91,7 +91,7 @@ class YoutubeVideosModel
                     header("Location: $redirect");
                     exit();
                 }
-
+*/
                 $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$title')");
                 $statement->execute();
                 $statement = null;

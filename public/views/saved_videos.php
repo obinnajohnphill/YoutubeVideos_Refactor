@@ -2,7 +2,7 @@
 <?php
 
 include dirname(__FILE__).'/../../vendor/autoload.php';
-session_start();
+
  //echo json_encode($_SESSION,JSON_FORCE_OBJECT);
 
 $payload = new \Obinna\Controllers\YoutubeVideosController(null);
@@ -41,7 +41,7 @@ if (!empty ($_SESSION['delete-msg'])){
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/data">All Saved Videos</a></li>
+            <li><a href="/saved_videos">All Saved Videos</a></li>
         </ul>
     </div>
 </nav>

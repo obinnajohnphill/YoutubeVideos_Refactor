@@ -25,7 +25,7 @@ input {
             <a class="navbar-brand" href="#">Home Page</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/data">All Saved Videos</a></li>
+            <li><a href="/saved_videos">All Saved Videos</a></li>
         </ul>
     </div>
 </nav>

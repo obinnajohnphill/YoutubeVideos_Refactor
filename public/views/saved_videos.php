@@ -5,6 +5,9 @@ include dirname(__FILE__).'/../../vendor/autoload.php';
 session_start();
  //echo json_encode($_SESSION,JSON_FORCE_OBJECT);
 
+$payload = new \Obinna\Controllers\YoutubeVideosController(null);
+$data = $payload->getAllVideos();
+
 if (!empty ($_SESSION['msg'])){
     $message = $_SESSION['msg'];
     echo '<div style="color:#4a8b15">' .$message.'</div>';
@@ -74,7 +77,7 @@ if (!empty ($_SESSION['delete-msg'])){
         el: '#payload',
         data: {
             items:
-                <?php echo json_encode($_SESSION['data'],JSON_FORCE_OBJECT); ?>
+                <?php echo json_encode($data,JSON_FORCE_OBJECT); ?>
         }
     })
 

@@ -54,13 +54,15 @@ created_date TIMESTAMP
 
 **Boot up Kafka Server**
 
-1. Fromm the app roor run: docker-compose up -d
+1. From the app roor run: docker-compose up -d
 
 2. Run: docker-compose run --rm --entrypoint php app run_consumer.php (on terminal)
 
 3. Run: docker-compose run --rm --entrypoint php app run_producer.php (on separate terminal)
 
-3. Run: tail data/logs/*.log (another terminal) ; You should see the kafka producer send out message when video is save,
+3. Run: tail data/logs/*.log (another terminal) ; 
+
+You should see the kafka producer send out message when video is save,
 and you should see the kafka message consumer ready to consume messages.
 
 

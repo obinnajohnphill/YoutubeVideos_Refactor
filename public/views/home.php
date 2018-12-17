@@ -34,6 +34,7 @@ input {
 session_start();
 if (!empty($_SESSION['duplicate'])){
     echo "<div class='msg'>".$_SESSION['duplicate'].": &nbsp;&nbsp;";
+    session_unset();
 }
 ?>
 

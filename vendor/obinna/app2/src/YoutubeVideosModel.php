@@ -132,24 +132,27 @@ class YoutubeVideosModel
 
     public function delete($video_id){
         try{
-            for ($i = 0; $i < count($video_id['videoId']); $i++){
-                $video = $video_id['videoId'][$i];
-                $statement = $this->conn->prepare("DELETE FROM videos WHERE video_id = '$video'");
-                $statement->execute();
-                $statement = null;
-                $this->memcached->flush();
-               // die("deleted?");
+            if (!empty($video_id['checkbox'])){
+                for ($i = 0; $i < count($video_id['checkbox']); $i++){
+                    $video = $video_id['videoId'][$i];
+                    $statement = $this->conn->prepare("DELETE FROM videos WHERE video_id = '$video'");
+                    $statement->execute();
+                    $statement = null;
+                    $this->memcached->flush();
+
+                }
             }
+            session_start();
+            $_SESSION['delete-msg'] = "Videos deleted from database";
+            $redirect = "../saved_videos";
+            header("Location: $redirect");
+            die();
 
         }
         catch(PDOException $e)
         {
             echo "Delete failed: " . $e->getMessage();
         }
-        session_start();
-        $_SESSION['delete-msg'] = "Videos deleted from database";
-        $redirect = "../saved_videos";
-        header("Location: $redirect");
     }
 
 

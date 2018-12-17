@@ -50,12 +50,9 @@ class YoutubeVideosController
     }
 
     public function deleteData($request){
-        for($i=0; $i < count($request['checkbox']); $i++){
-            $this->payload = array ('videoId'=>$request['videoId']);
-        }
-        $container = new YoutubeVideosContainer();
-        $delete = $container->getYoutubeVideosRepository();
-        $delete->delete($this->payload);
+            $container = new YoutubeVideosContainer();
+            $delete = $container->getYoutubeVideosRepository();
+            $delete->delete($request);
     }
 
     public function getAllVideos(){

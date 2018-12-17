@@ -8,16 +8,6 @@ include dirname(__FILE__).'/../../vendor/autoload.php';
 $payload = new \Obinna\Controllers\YoutubeVideosController(null);
 $data = $payload->getAllVideos();
 
-if (!empty ($_SESSION['msg'])){
-    $message = $_SESSION['msg'];
-    echo '<div style="color:#4a8b15">' .$message.'</div>';
-    session_unset();
-}
-if (!empty ($_SESSION['delete-msg'])){
-    $message = $_SESSION['delete-msg'];
-    echo '<div style="color:red">' .$message.'</div>';
-    session_unset();
-}
 ?>
 <!doctype html>
 <html>

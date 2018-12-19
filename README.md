@@ -54,7 +54,7 @@ created_date TIMESTAMP
 
 **Boot up Kafka Server**
 
-1. From the app roor run: docker-compose up -d
+1. From the app root run: docker-compose up -d
 
 2. Run: docker-compose run --rm --entrypoint php app run_consumer.php (on terminal)
 

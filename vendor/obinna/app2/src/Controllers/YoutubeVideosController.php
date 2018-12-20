@@ -37,7 +37,7 @@ class YoutubeVideosController
         $youtube_api = $container->getYoutubeVideosRepository();
         $this->value = $youtube_api->getYoutubeData($data['searchterm'], $data['number']);
         require_once $_SERVER["DOCUMENT_ROOT"] . '/views/show_videos.php';
-        return$this->value;
+        return $this->value;
     }
 
     public function saveData($data){
@@ -62,8 +62,6 @@ class YoutubeVideosController
         }
 
        require_once $_SERVER["DOCUMENT_ROOT"] . '/views/saved_videos.php';
-
-
 
     }
 

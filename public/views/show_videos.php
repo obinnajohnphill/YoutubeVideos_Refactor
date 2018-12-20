@@ -59,8 +59,6 @@
             object:<?php echo json_encode($this->value['items'],JSON_FORCE_OBJECT);?>
         }
     })
-
-
 </script>
 </body>
 </html>

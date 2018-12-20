@@ -10,8 +10,8 @@ use RdKafka\Producer;
 
 class KafkaMessage{
 
-     const KAFKA_PARTITION = 0;
-     const KAFKA_TOPIC = 'youtube';
+     public $kafka_partition = 0;
+     public $kafka_topic = 'youtube';
 
      public function __construct($data)
      {
@@ -20,11 +20,6 @@ class KafkaMessage{
 
     public function producer($data)
     {
-
-         //var_dump(php_ini_loaded_file());
-         //var_dump(get_loaded_extensions());
-         //die();
-
         $logger = new Logger('producer');
         $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/producer.log'));
         $logger->debug('Running producer...');
@@ -32,11 +27,11 @@ class KafkaMessage{
 
         $kafka->setLogLevel(LOG_DEBUG);
         $kafka->addBrokers('kafka');
-        $topic = $kafka->newTopic(KAFKA_TOPIC);
+        $topic = $kafka->newTopic($this->kafka_topic);
         for ($i = 0; $i < count($data['videoId']); $i++) {
-            $message = sprintf('Your video' . $data['title'] . 'has been saved into the database', $i);
+            $message = sprintf('Your video' . $data['title'][$i] . 'has been saved into the database', $i);
             $logger->debug(sprintf('Producing: %s', $message));
-            $topic->produce(KAFKA_PARTITION, 0, $message);
+            $topic->produce($this->kafka_partition , 0, $message);
             $kafka->poll(0);
         }
         while ($kafka->getOutQLen() > 0) {

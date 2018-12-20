@@ -101,6 +101,7 @@ class YoutubeVideosModel
                 new SendMessage();
                 include_once $_SERVER["DOCUMENT_ROOT"]."/Send.php";
                 new \Send($data); ## Send data to Kafka
+                //require_once $_SERVER["DOCUMENT_ROOT"] . '/views/saved_videos.php';
                 $redirect = "../saved_videos";
                 header( "Location: $redirect" );
             }

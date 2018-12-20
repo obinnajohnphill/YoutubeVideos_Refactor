@@ -9,10 +9,16 @@ use Monolog\Logger;
 
 require_once __DIR__ .'/vendor/autoload.php';
 
-include_once "Send.php";
+var_dump(php_ini_loaded_file());
+//var_dump(get_loaded_extensions());
+die();
 
-$call = new Send();
-$payload = $call->sendMessage();
+
+
+//include_once "Send.php";
+
+//$call = new Send();
+//$payload = $call->sendMessage();
 
 $logger = new Logger('producer');
 $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/producer.log'));

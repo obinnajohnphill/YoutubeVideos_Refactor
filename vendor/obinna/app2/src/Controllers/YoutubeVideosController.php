@@ -13,6 +13,7 @@ use Obinna\Services\YoutubeVideosContainer;
 class YoutubeVideosController
 {
     public $payload;
+    public $value;
 
     function __construct($request)
     {
@@ -34,13 +35,9 @@ class YoutubeVideosController
     {
         $container = new YoutubeVideosContainer();
         $youtube_api = $container->getYoutubeVideosRepository();
-        $value = $youtube_api->getYoutubeData($data['searchterm'], $data['number']);
-        session_start();
-        $_SESSION['videos'] = $value;
-        if(!empty($value)){
-            $redirect = "../show_videos";
-            header( "Location: $redirect" );
-        }
+        $this->value = $youtube_api->getYoutubeData($data['searchterm'], $data['number']);
+        require_once $_SERVER["DOCUMENT_ROOT"] . '/views/show_videos.php';
+        return$this->value;
     }
 
     public function saveData($data){
@@ -59,28 +56,13 @@ class YoutubeVideosController
         $container = new YoutubeVideosContainer();
         $select = $container->getYoutubeVideosRepository();
         $data = $select->all();
+
         for($i=0; $i < count($data['videoId']); $i++){
             $this->payload[] = array ('videoId'=>$data['videoId'][$i],'title'=>$data['title'][$i]);
         }
 
-        /*
-            $item = json_encode($this->payload,JSON_FORCE_OBJECT);
-            $redirect = "/saved_videos?data=".$item;
-            header( "Location: $redirect" );
-            die();
-        */
+       require_once $_SERVER["DOCUMENT_ROOT"] . '/views/saved_videos.php';
 
-
-        /*
-        session_start();
-        $_SESSION['data']=$this->payload;
-        $redirect = "../saved_videos";
-        header( "Location: $redirect" );
-        */
-
-        require_once $_SERVER["DOCUMENT_ROOT"] . '/views/saved_videos.php';
-
-        return $this->payload;
 
 
     }

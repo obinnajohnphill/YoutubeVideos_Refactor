@@ -1,14 +1,3 @@
-
-<?php
-
-include dirname(__FILE__).'/../../vendor/autoload.php';
-
- //echo json_encode($_SESSION,JSON_FORCE_OBJECT);
-
-$payload = new \Obinna\Controllers\YoutubeVideosController(null);
-$data = $payload->getAllVideos();
-
-?>
 <!doctype html>
 <html>
 <head>
@@ -67,7 +56,7 @@ $data = $payload->getAllVideos();
         el: '#payload',
         data: {
             items:
-                <?php echo json_encode($data,JSON_FORCE_OBJECT); ?>
+                <?php echo json_encode($this->payload,JSON_FORCE_OBJECT); ?>
         }
     })
 

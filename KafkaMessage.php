@@ -25,17 +25,16 @@ class KafkaMessage{
         $logger->debug('Running producer...');
         $kafka = new Producer();
 
+        $logger->debug(json_encode($data));
+
         $kafka->setLogLevel(LOG_DEBUG);
-        $kafka->addBrokers('kafka');
+        $kafka->addBrokers('172.23.0.4:9092');
         $topic = $kafka->newTopic($this->kafka_topic);
         for ($i = 0; $i < count($data['videoId']); $i++) {
             $message = sprintf('Your video' . $data['title'][$i] . ' has been saved into the database', $i);
             $logger->debug(sprintf('Producing: %s', $message));
             $topic->produce($this->kafka_partition , 0, $message);
-            $kafka->poll(0);
-        }
-        while ($kafka->getOutQLen() > 0) {
-            $kafka->poll(0);
+            $logger->debug(sprintf('Produced: %s', $message));
         }
     }
 }

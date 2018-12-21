@@ -29,7 +29,7 @@ class KafkaMessage{
         $kafka->addBrokers('kafka');
         $topic = $kafka->newTopic($this->kafka_topic);
         for ($i = 0; $i < count($data['videoId']); $i++) {
-            $message = sprintf('Your video' . $data['title'][$i] . 'has been saved into the database', $i);
+            $message = sprintf('Your video' . $data['title'][$i] . ' has been saved into the database', $i);
             $logger->debug(sprintf('Producing: %s', $message));
             $topic->produce($this->kafka_partition , 0, $message);
             $kafka->poll(0);

@@ -77,25 +77,30 @@ class YoutubeVideosModel
     public function saveAll($data)
     {
         try {
-            $array = array("videoId"=>$data['videoId'],"title"=>$data['title']);
-            for ($i= 0; $i < count($data['checkbox']); $i++) {
 
-                $video_id = $array['videoId'][$i];
-                $title = $array['title'][$i];
+            for ($i= 0; $i < count($data['videoId']); $i++) {
 
-                $checkDuplicate = $this->checkDuplicate($array['videoId'][$i]);
+                $video_id = $data['videoId'][$i];
+                $title = $data['title'][$i];
+
+                $checkDuplicate = $this->checkDuplicate($data['videoId'][$i]);
 
                 if ($checkDuplicate > 0) {
                     session_start();
-                    $_SESSION['duplicate'] = "Duplicate video exists in database: ".$title;
+                    $_SESSION['duplicate'] = "Duplicate video exists in database: " . $title;
                     $redirect = "../";
                     header("Location: $redirect");
                     die();
                 }
 
-                $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$title')");
-                $statement->execute();
-                $statement = null;
+                if ($video_id != null){
+                    $remove_quotes = str_replace('"', '', $title);
+                    $video_title = str_replace("'", '', $remove_quotes);
+                    $statement = $this->conn->prepare("INSERT INTO videos (video_id, title) VALUES ('$video_id','$video_title')");
+                    $statement->execute();
+                    $statement = null;
+                }
+            }
 
                 $this->memcached->flush();
                 new SendMessage();
@@ -104,8 +109,8 @@ class YoutubeVideosModel
                 //require_once $_SERVER["DOCUMENT_ROOT"] . '/views/saved_videos.php';
                 $redirect = "../saved_videos";
                 header( "Location: $redirect" );
-            }
-             die();
+
+
         }
         catch(PDOException $e)
         {

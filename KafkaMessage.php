@@ -33,7 +33,7 @@ class KafkaMessage{
         $logger->debug(json_encode($data));
 
         $kafka->setLogLevel(LOG_DEBUG);
-        $kafka->addBrokers('kafka.enta.net:9092');
+        $kafka->addBrokers('XXX XXX XXX:9092');
         $topic = $kafka->newTopic($this->kafka_topic);
         for ($i = 0; $i < count($data['videoId']); $i++) {
             $array = array("video id"=>$data['videoId'][$i],"title" => $data['title'][$i]);

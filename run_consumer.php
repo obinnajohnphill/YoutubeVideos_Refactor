@@ -18,7 +18,7 @@ $conf = new RdKafka\Conf();
 $conf->set('group.id', 'myConsumerGroup');
 
 $kafka = new RdKafka\Consumer($conf);
-$kafka->addBrokers('kafka');
+$kafka->addBrokers('kafka.enta.net:9092');
 
 $topicConf = new RdKafka\TopicConf();
 $topicConf->set('auto.commit.interval.ms', 100);
@@ -42,6 +42,11 @@ $topic->consumeStart(KAFKA_PARTITION, RD_KAFKA_OFFSET_STORED);
 
 while (true) {
     $message = $topic->consume(KAFKA_PARTITION, 120*10000);
+
+    var_dump(json_decode($message->payload,true));
+    die();
+
+
     switch ($message->err) {
         case RD_KAFKA_RESP_ERR_NO_ERROR:
             $logger->info($message->payload);
@@ -57,4 +62,5 @@ while (true) {
             throw new \Exception($message->errstr(), $message->err);
             break;
     }
+
 }

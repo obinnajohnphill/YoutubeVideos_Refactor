@@ -33,12 +33,12 @@ class KafkaMessage{
         $logger->debug(json_encode($data));
 
         $kafka->setLogLevel(LOG_DEBUG);
-        $kafka->addBrokers('XXX XXX XXX:9092');
+        $kafka->addBrokers('kafka.enta.net:9092');
         $topic = $kafka->newTopic($this->kafka_topic);
         for ($i = 0; $i < count($data['videoId']); $i++) {
             $array = array("video id"=>$data['videoId'][$i],"title" => $data['title'][$i]);
             $payload = json_encode($array);
-            $message = sprintf('Your video' . $payload. ' has been saved into the database', $i);
+            $message = sprintf( $payload, $i);
             $logger->debug(sprintf('Producing: %s', $message));
             $topic->produce($this->kafka_partition , 0, $message);
             $logger->debug(sprintf('Produced: %s', $message));
